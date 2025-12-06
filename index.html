@@ -1,171 +1,284 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-      crossorigin="anonymous"
-    />
-    <link
-      href="//db.onlinewebfonts.com/c/c05a0e2ed6cec31b7500e45412ecb352?family=NeusaW00-DemiBold"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofoliu Web Design - Andrei Dan</title>
+    <!-- Încarcă Tailwind CSS din CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Configurează fontul Inter și culorile personalizate -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#3B82F6', // Albastru (Highlight profesional)
+                        'secondary': '#2563EB', // Albastru mai închis (Hover/Acțiune)
+                        'accent': '#14B8A6', // Teal/Cyan (Accent subtil/Taguri)
+                        'background': '#0F172A', // Slate 900 (Fundal închis, elegant)
+                        'card-bg': '#1E293B', // Slate 800 (Fundal card)
+                        'text-light': '#F1F5F9', // Slate 100 (Titluri)
+                        'text-dark': '#94A3B8', // Slate 400 (Text paragraf)
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    keyframes: {
+                        'slide-in-up': {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        'fade-in': {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    },
+                    animation: {
+                        'slide-in-up': 'slide-in-up 0.6s ease-out',
+                        'fade-in': 'fade-in 1s ease-out',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Asigură un scroll lin */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="bg-background text-text-light font-sans antialiased">
 
-    <title>Andrei Dan's Portfolio</title>
-    <link
-      rel="shortcut icon"
-      type="image/x-icon"
-      href="img/AndreiDan-logos_black.png"
-    />
-  </head>
-  <body>
-    <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark border-dark">
-      <a class="navbar-brand">
-        <img class="logo" src="img/AndreiDan-logos_transparent.png" />
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar7">
-          <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="navbar-collapse collapse justify-content-stretch" id="navbar7">
-          <ul class="navbar-nav ml-auto">
-              <li class="nav-item">
-                  <a class="nav-link" href="#inner">Home</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="#card-deck">Portfolio</a>
-              </li>
-          </ul>
-      </div>
-  </nav>
-    <div class="inner" id="inner">
-      <div class="short--present">
-        <h1 class="name__h1">Hi, my name is Andrei</h1>
-        <hr />
-        <h2 class="present--2">Welcome to my portfolio!</h2>
-      </div>
-    </div>
-    <div class="card-deck" id="card-deck">
-        <div class="card mt-5 card-body flex-fill col-sm-8 " style="width: 18rem">
-          <span class="badge badge-success">Responsive!</span>
-          <img class="card-img-top mx-auto align-middle" src="img/guess.png" alt="Card image cap" />
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Guessing game</h5>
-            <p class="card-text">
-              A simple guessing game, where the player needs to guess the random
-              number by geting hints.
-            </p>
-            <br>
-            <a href="Guess_my_number/" class="align-self-end btn btn-primary btn-sm btn-block mt-auto"
-              >Start guessing!</a
-            >
-          </div>
+    <!-- Header & Navigare -->
+    <header class="sticky top-0 z-50 bg-background/95 backdrop-blur-sm shadow-lg">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <a href="#hero" class="text-2xl font-extrabold text-primary hover:text-secondary transition-colors duration-300">
+                Andrei Dan
+            </a>
+            <div class="space-x-4 hidden md:flex">
+                <a href="#despre" class="text-text-dark hover:text-primary transition duration-300 px-3 py-2 rounded-lg hover:bg-card-bg">Despre Mine</a>
+                <a href="#proiecte" class="text-text-dark hover:text-primary transition duration-300 px-3 py-2 rounded-lg hover:bg-card-bg">Proiecte</a>
+                <a href="#contact" class="text-text-dark hover:text-primary transition duration-300 px-3 py-2 rounded-lg hover:bg-card-bg">Contact</a>
+            </div>
+            <!-- Buton pentru navigare mobilă (simplificat) -->
+            <button class="md:hidden text-text-light hover:text-primary focus:outline-none">
+                <!-- Icon meniu SVG (exemplu) -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Secțiunea 1: Hero -->
+        <section id="hero" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32 flex flex-col md:flex-row items-center justify-between min-h-screen">
+            <div class="md:w-3/5 text-center md:text-left animate-slide-in-up">
+                <p class="text-lg text-accent mb-2 font-medium">Salut, mă numesc Andrei Dan</p>
+                <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-tight mb-4">
+                    Sunt <span class="text-primary">Designer & Dezvoltator</span> Web
+                </h1>
+                <p class="text-xl text-text-dark mb-8 max-w-xl mx-auto md:mx-0">
+                    Construiesc experiențe digitale moderne, responsive și intuitive. Mă concentrez pe soluții curate și performante.
+                </p>
+                <a href="#proiecte" class="inline-block bg-primary text-text-light font-bold py-3 px-8 rounded-full shadow-lg hover:bg-secondary transition-all duration-300 transform hover:scale-105">
+                    Vezi Portofoliul
+                </a>
+                <a href="#contact" class="inline-block text-primary font-bold py-3 px-8 rounded-full ml-4 border-2 border-primary hover:bg-primary hover:text-text-light transition-all duration-300">
+                    Contactează-mă
+                </a>
+            </div>
+            <div class="md:w-2/5 mt-12 md:mt-0 flex justify-center animate-fade-in">
+                <!-- Poza de Profil (Placeholder) -->
+                <img 
+                    src="https://placehold.co/320x320/3B82F6/F1F5F9?text=AD" 
+                    alt="Andrei Dan - Poza de profil" 
+                    class="w-64 h-64 md:w-80 md:h-80 rounded-full object-cover border-4 border-primary/50 shadow-2xl transition-all duration-500 hover:scale-105"
+                    onerror="this.onerror=null;this.src='https://placehold.co/320x320/3B82F6/F1F5F9?text=AD'"
+                >
+                <!-- NOTĂ: Înlocuiește "https://placehold.co..." cu calea către poza ta reală: "img/profil.jpg" -->
+            </div>
+        </section>
+
+        <!-- Secțiunea 2: Despre Mine -->
+        <section id="despre" class="bg-card-bg py-20 md:py-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-bold text-center mb-12 text-primary">Despre Mine & Competențe</h2>
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-6 text-lg text-text-dark">
+                        <p>
+                            Cu o pasiune puternică pentru estetică și funcționalitate, mă dedic transformării ideilor în interfețe web excepționale. Cred că cele mai bune site-uri combină designul intuitiv cu codul curat.
+                        </p>
+                        <p>
+                            Sunt orientat spre detalii și întotdeauna gata să învăț noi tehnologii pentru a livra produse de înaltă calitate, optimizate pentru orice dispozitiv.
+                        </p>
+                        <a href="#proiecte" class="inline-block text-accent hover:text-secondary font-semibold border-b-2 border-accent hover:border-secondary transition-colors duration-300 mt-4">
+                            Vezi cum aplic aceste competențe în proiectele mele &rarr;
+                        </a>
+                    </div>
+                    <div>
+                        <div class="space-y-4">
+                            <!-- Bară de progres CSS/HTML -->
+                            <div class="text-sm font-medium">HTML & CSS (Tailwind)</div>
+                            <div class="w-full bg-background rounded-full h-2.5">
+                                <div class="bg-primary h-2.5 rounded-full" style="width: 95%"></div>
+                            </div>
+                            <!-- Bară de progres JavaScript -->
+                            <div class="text-sm font-medium">JavaScript (ES6+)</div>
+                            <div class="w-full bg-background rounded-full h-2.5">
+                                <div class="bg-primary h-2.5 rounded-full" style="width: 85%"></div>
+                            </div>
+                            <!-- Bară de progres Design Responsiv -->
+                            <div class="text-sm font-medium">Design Responsiv & UI/UX</div>
+                            <div class="w-full bg-background rounded-full h-2.5">
+                                <div class="bg-primary h-2.5 rounded-full" style="width: 90%"></div>
+                            </div>
+                            <!-- Bară de progres Librării (React/Angular) - Adaptare la ce știi -->
+                            <div class="text-sm font-medium">Librării JS (e.g., React/Angular)</div>
+                            <div class="w-full bg-background rounded-full h-2.5">
+                                <div class="bg-primary h-2.5 rounded-full" style="width: 75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Secțiunea 3: Proiecte -->
+        <section id="proiecte" class="py-20 md:py-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-bold text-center mb-16 text-primary">Proiecte Recente</h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+
+                    <!-- Funcție pentru generarea cardului de proiect -->
+                    <script>
+                        function createProjectCard(title, description, link, tags) {
+                            // Setează target='_blank' doar pentru link-uri externe (care încep cu http)
+                            const target = link.startsWith('http') ? '_blank' : '_self';
+                            return `
+                                <div class="group bg-card-bg p-6 rounded-xl shadow-xl border border-card-bg hover:border-primary transition-all duration-500 transform hover:-translate-y-1 hover:shadow-primary/50">
+                                    <h3 class="text-2xl font-semibold mb-3 text-text-light group-hover:text-primary transition-colors">${title}</h3>
+                                    <p class="text-text-dark mb-4">${description}</p>
+                                    <div class="flex flex-wrap gap-2 mb-6">
+                                        ${tags.map(tag => `<span class="text-xs font-medium bg-background text-accent px-3 py-1 rounded-full">${tag}</span>`).join('')}
+                                    </div>
+                                    <a href="${link}" target="${target}" rel="noopener noreferrer" class="flex items-center text-secondary font-semibold hover:text-primary transition-colors">
+                                        Vezi Proiectul
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            `;
+                        }
+
+                        // Datele proiectelor actualizate cu link-urile specificate
+                        const projects = [
+                            {
+                                title: "Guessing Game",
+                                description: "Un joc interactiv de ghicit numere, construit cu logică JavaScript pură. Demonstrează manipularea DOM-ului și gestionarea stării jocului.",
+                                // Link actualizat: Guess_my_number/index.html (presupunând calea relativă în folder)
+                                link: "Guess_my_number/index.html",
+                                tags: ["JavaScript", "DOM", "HTML", "CSS"]
+                            },
+                            {
+                                title: "Pig Game (Jocul Porcului)",
+                                description: "Implementare digitală a popularului joc cu zaruri, evidențiind structurarea codului și evenimentele complexe.",
+                                // Link actualizat: Pig_game/index.html
+                                link: "Pig_game/index.html",
+                                tags: ["JavaScript", "Joc", "Logică"]
+                            },
+                            {
+                                title: "Bank App (Aplicație Bancară Mock)",
+                                description: "Interfață de utilizator (UI) care simulează operațiunile bancare. Excelent pentru a arăta expertiza în UI/UX și manipularea datelor.",
+                                // Link actualizat: Bank/index.html
+                                link: "Bank/index.html",
+                                tags: ["UI/UX", "JavaScript", "Design Responsiv"]
+                            },
+                            {
+                                title: "Website Animations",
+                                description: "O colecție de animații și tranziții CSS și JavaScript, demonstrând capacitatea de a adăuga viață interfețelor.",
+                                // Link actualizat: Bank_2/index.html (Presupunând că Bank_2 conține animațiile)
+                                link: "Bank_2/index.html",
+                                tags: ["CSS3", "Animații", "JavaScript", "Performanță"]
+                            },
+                            {
+                                title: "Mapy (Aplicație Hărți)",
+                                description: "O aplicație bazată pe locație, care utilizează API-uri de hărți (ex. Leaflet sau Google Maps), demonstrând integrarea API-urilor externe.",
+                                // Link actualizat: Mapty/index.html
+                                link: "Mapty/index.html",
+                                tags: ["API Integration", "GeoLocation", "Leaflet/Maps"]
+                            },
+                            {
+                                title: "Music Artist Page (Pagină Artist)",
+                                description: "Un site one-page, cu design elegant, pentru un artist. Se concentrează pe estetică, tipografie și o experiență imersivă.",
+                                // Link actualizat: andrewtriky.com (Adresă absolută)
+                                link: "http://andrewtriky.com", 
+                                tags: ["One-Page", "Design Estetic", "Tipografie"]
+                            },
+                        ];
+
+                        document.addEventListener('DOMContentLoaded', () => {
+                            const container = document.getElementById('project-container');
+                            if (container) {
+                                container.innerHTML = projects.map(p => createProjectCard(p.title, p.description, p.link, p.tags)).join('');
+                            }
+                        });
+                    </script>
+
+                    <div id="project-container" class="contents">
+                        <!-- Cardurile de proiect vor fi inserate aici de scriptul JavaScript -->
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Secțiunea 4: Contact -->
+        <section id="contact" class="bg-card-bg py-20 md:py-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-bold text-center mb-6 text-primary">Hai să Creăm Împreună</h2>
+                <p class="text-xl text-text-dark text-center mb-12 max-w-2xl mx-auto">
+                    Ești gata să începi un proiect uimitor? Contactează-mă și hai să discutăm viziunea ta.
+                </p>
+
+                <div class="max-w-xl mx-auto bg-background p-8 rounded-xl shadow-2xl border border-card-bg/50">
+                    <form class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-text-light mb-1">Numele Tău</label>
+                            <input type="text" id="name" name="name" class="w-full px-4 py-2 bg-card-bg border border-text-dark/30 rounded-lg focus:border-primary focus:ring focus:ring-primary/50 text-text-light" placeholder="Ion Popescu" required>
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-text-light mb-1">Adresa de Email</label>
+                            <input type="email" id="email" name="email" class="w-full px-4 py-2 bg-card-bg border border-text-dark/30 rounded-lg focus:border-primary focus:ring focus:ring-primary/50 text-text-light" placeholder="email@exemplu.com" required>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-text-light mb-1">Mesajul Tău</label>
+                            <textarea id="message" name="message" rows="4" class="w-full px-4 py-2 bg-card-bg border border-text-dark/30 rounded-lg focus:border-primary focus:ring focus:ring-primary/50 text-text-light" placeholder="Descrie pe scurt proiectul..." required></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-accent text-text-light font-bold py-3 px-4 rounded-lg shadow-md hover:bg-secondary transition-colors duration-300 transform hover:scale-[1.01]">
+                            Trimite Mesajul
+                        </button>
+                        <p class="text-center text-text-dark text-sm mt-4">
+                            Sau mă poți contacta direct la: <a href="mailto:email@exemplu.com" class="text-primary hover:underline">email@exemplu.com</a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-background border-t border-card-bg py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-text-dark">
+            <p>&copy; <span id="current-year"></span> Andrei Dan. Toate drepturile rezervate. | Construit cu Pasune.</p>
         </div>
-          <div class="card mt-5 card-body flex-fill col-sm-8" style="width: 18rem">
-            <span class="badge badge-pill badge-warning no-gutters">Not responsive!</span>
-            <img
-              class="card-img-top mx-auto align-middle"
-              src="img/pig_game.png"
-              alt="Card image cap"
-            />
-            <div class="card-body d-flex flex-column">
-              <h5 class="card-title">Pig game</h5>
-              <p class="card-text">A simple dice game in which two players race to reach 100 points. Each turn, a player repeatedly rolls a die until either a 1 is rolled or the player holds and scores the sum of the rolls.</p>
-              <a href="Pig_game/" class="align-self-end btn btn-primary btn-sm btn-block mt-auto"
-                >Start playing!</a
-              >
-          </div>
-        </div>
-        <div class="card mt-5 card-body flex-fill col-sm-8" style="width: 18rem">
-          <span class="badge badge-pill badge-warning no-gutters">Not responsive!</span>
-          <img
-            class="card-img-top mx-auto align-middle"
-            src="img/bank_icon2.png"
-            alt="Card image cap"
-          />
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Bank app</h5>
-            <p class="card-text">
-              A simple bank application, where you need to login in in order to see
-              transactions, send money and get loans from the bank.
-            </p>
-            <br>
-            <a href="Bank/" class="align-self-end btn btn-primary btn-sm btn-block mt-auto"
-              >Banking!</a
-            >
-            
-          </div>
-        </div>       
-          </div>
-        </div>
-      </div>
-    
-    </div>
-    <div class="card-deck" id="card-deck">
-      <div class="card mt-5 card-body flex-fill col-sm-8 " style="width: 18rem">
-        <span class="badge badge-success">Responsive!</span>
-        <img class="card-img-top mx-auto align-middle" src="img/bank-icon.png" alt="Card image cap" />
-        <div class="card-body d-flex flex-column">
-          <h5 class="card-title">Website animations</h5>
-          <p class="card-text">
-            A simple website with different effects, like: smooth scrolling, testimonial slider, modal, etc.
-          </p>
-          <br>
-          <a href="Bank_2/" class="align-self-end btn btn-primary btn-sm btn-block mt-auto"
-            >Enter website!</a
-          >
-        </div>
-      </div>
-        <div class="card mt-5 card-body flex-fill col-sm-8" style="width: 18rem">
-          <span class="badge badge-pill badge-warning no-gutters">Not responsive!</span>
-          <img
-            class="card-img-top mx-auto align-middle"
-            src="img/Map.jpg"
-            alt="Card image cap"
-          />
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Mapy</h5>
-            <p class="card-text">A fitness app, where the user can map his own workouts.
-            <span style="color:orange">(developed using Object-Oriented Programming and external libraries)</span> </p>
-            <a href="Map/" class="align-self-end btn btn-primary btn-sm btn-block mt-auto"
-              >Start Workout!</a
-            >
-        </div>
-      </div>
-      <div class="card mt-5 card-body flex-fill col-sm-8" style="width: 18rem">
-        <span class="badge badge-success">Responsive!</span>
-        <img
-          class="card-img-top mx-auto align-middle"
-          src="img/wordpress.png"
-          alt="Card image cap"
-        />
-        <div class="card-body d-flex flex-column">
-          <h5 class="card-title">Ecommerce website</h5>
-          <p class="card-text">
-            An ecommerce website made in wordpress. Shopping cart and invoice functions have been disabled due to excessive price increases.
-          </p>
-          <br>
-          <a href="https://paint-technology.com/" class="align-self-end btn btn-primary btn-sm btn-block mt-auto"
-            >Go to Website!</a
-          >
-        </div>
-      </div>
-    </div>
-    <div class="footer">
-      <div class="footer--contact">
-        <i class="fa fa-phone"></i><a>(+40) 756 344 859</a>
-        <i class="fa fa-envelope"></i><a>dan.andrei993@gmail.com</a>
-      </div>
-    </div>
-    <script src="JS/script.js"></script>
-  </body>
+        <script>
+            // Setează anul curent în footer
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+        </script>
+    </footer>
+</body>
 </html>
