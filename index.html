@@ -6,6 +6,9 @@
     <title>Portofoliu Web Design - Andrei Dan</title>
     <!-- Încarcă Tailwind CSS din CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome pentru iconițe -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLMDJc/E0H4BAwx4wSExK1z9DL6w6vB6E3+S3eGj6GzL3k4GvD8+2H6J6f6N7/P+A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
     <!-- Configurează fontul Inter și culorile personalizate -->
     <script>
         tailwind.config = {
@@ -90,14 +93,13 @@
                 </a>
             </div>
             <div class="md:w-2/5 mt-12 md:mt-0 flex justify-center animate-fade-in">
-                <!-- Poza de Profil (Placeholder) -->
+                <!-- Poza de Profil (Calea actualizată) -->
                 <img 
                     src="img/profil2.jpg" 
                     alt="Andrei Dan - Poza de profil" 
                     class="w-64 h-64 md:w-80 md:h-80 rounded-full object-cover border-4 border-primary/50 shadow-2xl transition-all duration-500 hover:scale-105"
                     onerror="this.onerror=null;this.src='https://placehold.co/320x320/3B82F6/F1F5F9?text=AD'"
                 >
-                <!-- NOTĂ: Înlocuiește "https://placehold.co..." cu calea către poza ta reală: "img/profil.jpg" -->
             </div>
         </section>
 
@@ -154,76 +156,81 @@
 
                     <!-- Funcție pentru generarea cardului de proiect -->
                     <script>
-                        function createProjectCard(title, description, link, tags) {
+                        function createProjectCard(title, description, link, tags, iconClass) {
                             // Setează target='_blank' doar pentru link-uri externe (care încep cu http)
                             const target = link.startsWith('http') ? '_blank' : '_self';
                             return `
-                                <div class="group bg-card-bg p-6 rounded-xl shadow-xl border border-card-bg hover:border-primary transition-all duration-500 transform hover:-translate-y-1 hover:shadow-primary/50">
-                                    <h3 class="text-2xl font-semibold mb-3 text-text-light group-hover:text-primary transition-colors">${title}</h3>
-                                    <p class="text-text-dark mb-4">${description}</p>
-                                    <div class="flex flex-wrap gap-2 mb-6">
-                                        ${tags.map(tag => `<span class="text-xs font-medium bg-background text-accent px-3 py-1 rounded-full">${tag}</span>`).join('')}
+                                <div class="group bg-card-bg p-6 rounded-xl shadow-xl border border-card-bg hover:border-primary transition-all duration-500 transform hover:-translate-y-1 hover:shadow-primary/50 flex flex-col justify-between">
+                                    <div>
+                                        <h3 class="text-2xl font-semibold mb-3 text-text-light group-hover:text-primary transition-colors flex items-center">
+                                            <i class="${iconClass} text-accent mr-3"></i>
+                                            ${title}
+                                        </h3>
+                                        <p class="text-text-dark mb-4">${description}</p>
                                     </div>
-                                    <a href="${link}" target="${target}" rel="noopener noreferrer" class="flex items-center text-secondary font-semibold hover:text-primary transition-colors">
-                                        Vezi Proiectul
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                        </svg>
-                                    </a>
+                                    <div class="flex flex-col">
+                                        <!-- Containerul pentru taguri și buton. Dacă doriți ca tagurile și butonul să fie pe același rând, puteți folosi 'flex justify-between items-center' aici. -->
+                                        <div class="flex flex-wrap gap-2 mb-4">
+                                            ${tags.map(tag => `<span class="text-xs font-medium bg-background text-accent px-3 py-1 rounded-full">${tag}</span>`).join('')}
+                                        </div>
+                                        <a href="${link}" target="${target}" rel="noopener noreferrer" class="inline-block text-center bg-primary text-text-light font-bold py-2 px-4 rounded-lg shadow-md hover:bg-secondary transition-all duration-300 transform hover:scale-[1.01]">
+                                            Vezi Proiectul
+                                        </a>
+                                    </div>
                                 </div>
                             `;
                         }
 
-                        // Datele proiectelor actualizate cu link-urile specificate
+                        // Datele proiectelor actualizate
                         const projects = [
                             {
                                 title: "Guessing Game",
-                                description: "Un joc interactiv de ghicit numere, construit cu logică JavaScript pură. Demonstrează manipularea DOM-ului și gestionarea stării jocului.",
-                                // Link actualizat: Guess_my_number/index.html (presupunând calea relativă în folder)
+                                description: "Joc interactiv de ghicit numere. Demonstrează logica JavaScript pură și manipularea DOM.",
                                 link: "Guess_my_number/index.html",
-                                tags: ["JavaScript", "DOM", "HTML", "CSS"]
+                                tags: ["JavaScript", "DOM", "CSS"],
+                                iconClass: "fas fa-dice"
                             },
                             {
-                                title: "Pig Game (Jocul Porcului)",
-                                description: "Implementare digitală a popularului joc cu zaruri, evidențiind structurarea codului și evenimentele complexe.",
-                                // Link actualizat: Pig_game/index.html
+                                title: "Pig Game",
+                                description: "Implementare digitală a jocului cu zaruri Pig. Evidențiază structura codului și gestionarea evenimentelor complexe.",
                                 link: "Pig_game/index.html",
-                                tags: ["JavaScript", "Joc", "Logică"]
+                                tags: ["JavaScript", "Logică", "Joc"],
+                                iconClass: "fas fa-piggy-bank"
                             },
                             {
-                                title: "Bank App (Aplicație Bancară Mock)",
-                                description: "Interfață de utilizator (UI) care simulează operațiunile bancare. Excelent pentru a arăta expertiza în UI/UX și manipularea datelor.",
-                                // Link actualizat: Bank/index.html
+                                title: "Bank App",
+                                description: "Interfață UI ce simulează operațiunile bancare. Expertiză în UI/UX și manipularea eficientă a datelor.",
                                 link: "Bank/index.html",
-                                tags: ["UI/UX", "JavaScript", "Design Responsiv"]
+                                tags: ["UI/UX", "JavaScript", "Responsiv"],
+                                iconClass: "fas fa-university"
                             },
                             {
                                 title: "Website Animations",
-                                description: "O colecție de animații și tranziții CSS și JavaScript, demonstrând capacitatea de a adăuga viață interfețelor.",
-                                // Link actualizat: Bank_2/index.html (Presupunând că Bank_2 conține animațiile)
+                                description: "Colecție de animații CSS și JavaScript. Capacitatea de a adăuga tranziții fluide și viață interfețelor web.",
                                 link: "Bank_2/index.html",
-                                tags: ["CSS3", "Animații", "JavaScript", "Performanță"]
+                                tags: ["CSS3", "Animații", "Performanță"],
+                                iconClass: "fas fa-wand-magic-sparkles"
                             },
                             {
-                                title: "Mapy (Aplicație Hărți)",
-                                description: "O aplicație bazată pe locație, care utilizează API-uri de hărți (ex. Leaflet sau Google Maps), demonstrând integrarea API-urilor externe.",
-                                // Link actualizat: Mapty/index.html
+                                title: "Mapy App",
+                                description: "Aplicație bazată pe locație. Utilizează API-uri de hărți (Leaflet) și demonstrează integrarea serviciilor externe.",
                                 link: "Mapty/index.html",
-                                tags: ["API Integration", "GeoLocation", "Leaflet/Maps"]
+                                tags: ["API", "GeoLocation", "Hărți"],
+                                iconClass: "fas fa-map-location-dot"
                             },
                             {
-                                title: "Music Artist Page (Pagină Artist)",
-                                description: "Un site one-page, cu design elegant, pentru un artist. Se concentrează pe estetică, tipografie și o experiență imersivă.",
-                                // Link actualizat: andrewtriky.com (Adresă absolută)
+                                title: "Music Artist Page",
+                                description: "Site one-page cu design elegant pentru un artist. Se concentrează pe estetică, tipografie și experiență imersivă.",
                                 link: "http://andrewtriky.com", 
-                                tags: ["One-Page", "Design Estetic", "Tipografie"]
+                                tags: ["Design Estetic", "Tipografie", "One-Page"],
+                                iconClass: "fas fa-compact-disc"
                             },
                         ];
 
                         document.addEventListener('DOMContentLoaded', () => {
                             const container = document.getElementById('project-container');
                             if (container) {
-                                container.innerHTML = projects.map(p => createProjectCard(p.title, p.description, p.link, p.tags)).join('');
+                                container.innerHTML = projects.map(p => createProjectCard(p.title, p.description, p.link, p.tags, p.iconClass)).join('');
                             }
                         });
                     </script>
@@ -262,7 +269,7 @@
                             Trimite Mesajul
                         </button>
                         <p class="text-center text-text-dark text-sm mt-4">
-                            Sau mă poți contacta direct la: <a href="mailto:email@exemplu.com" class="text-primary hover:underline">dan.andrei993@gmail.com</a>
+                            Sau mă poți contacta direct la: <a href="mailto:dan.andrei993@gmail.com" class="text-primary hover:underline">email@exemplu.com</a>
                         </p>
                     </form>
                 </div>
@@ -282,6 +289,3 @@
     </footer>
 </body>
 </html>
-
-
-
